@@ -1,21 +1,43 @@
 import React, { Component } from 'react';
-import { Route, Redirect, Switch } from 'react-router-dom';
-import Movies from './components/movies'
+import { Route, Redirect, Switch } from 'react-router-dom'; //3rd Party Libraries
+import { ToastContainer } from 'react-toastify';
+import jwtDecode from 'jwt-decode';
+import Movies from './components/movies'  //Components
 import MovieForm from './components/movieForm';
 import Customers from './components/customers';
 import Rentals from './components/rentals';
 import NotFound from './components/notFound';
 import NavBar from './components/navBar';
-
+import LoginForm from './components/loginForm';
+import RegisterForm from './components/registerForm';
+import Logout from "./components/logout";
+import 'react-toastify/dist/ReactToastify.css';   //CSS MODULES
 import './App.css';
 
 class App extends Component {
+  state = {
+
+  };
+
+  componentDidMount() {
+    try {
+      const jwt = localStorage.getItem('token');
+      const user = jwtDecode(jwt)
+      this.setState({ user });
+    }
+    catch (ex) {}
+  }
+
   render() {
     return (
       <React.Fragment>
-      <NavBar />
-      <main role="main" className="container">
+        <ToastContainer/>
+      <NavBar user={this.state.user} />
+      <main className="container">
         <Switch>
+          <Route path="/register" component={RegisterForm}/>
+          <Route path="/login" component={LoginForm}/>
+          <Route path="/logout" component={Logout}/>
           <Route path="/movies/:id" component={MovieForm}/>
           <Route path="/movies" component={Movies} />
           <Route path="/customers" component={Customers} />
