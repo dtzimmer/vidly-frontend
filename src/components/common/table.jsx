@@ -4,6 +4,7 @@ import TableBody from './tableBody';
 
 const Table = ({ columns, sortColumn, onSort, data }) => {
   return (
+    <table className="table-responsive">
     <table className="table">
       <TableHeader
         columns={columns}
@@ -11,6 +12,7 @@ const Table = ({ columns, sortColumn, onSort, data }) => {
         onSort={onSort}
       />
       <TableBody columns={columns} data={data} />
+    </table>
     </table>
   );
 };

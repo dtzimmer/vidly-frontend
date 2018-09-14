@@ -101,8 +101,9 @@ class Movies extends Component {
     const { totalCount, data: movies } = this.getPagedData()
 
     return (
+      <div className="container">
       <div className="row">
-        <div className="col-3">
+        <div className="col">
           <ListGroup
             items={this.state.genres}
             selectedItem={this.state.selectedGenre}
@@ -113,7 +114,7 @@ class Movies extends Component {
           {user && (
             <Link
               to="/movies/new"
-              className="btn btn-primary"
+              className="centerbutton"
               style={{ marginBottom: 20 }}
             >
               New Movie
@@ -135,6 +136,7 @@ class Movies extends Component {
             onPageChange={this.handlePageChange}
           />
         </div>
+      </div>
       </div>
     )
   }

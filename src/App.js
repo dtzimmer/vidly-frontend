@@ -32,7 +32,8 @@ class App extends Component {
       <React.Fragment>
         <ToastContainer/>
       <NavBar user={ user } />
-      <main className="container">
+      <main>
+        <div className="mainpage">
         <Switch>
           <Route path="/register" component={RegisterForm}/>
           <Route path="/login" component={LoginForm}/>
@@ -48,6 +49,7 @@ class App extends Component {
           <Redirect from="/" exact to="/movies" />
           <Redirect to="/not-found"/>
         </Switch>
+        </div>
       </main>
       </React.Fragment>
     );
